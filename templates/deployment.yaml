@@ -37,22 +37,46 @@ spec:
               configMapKeyRef:
                 name: spring-config
                 key: dev-config.json
-          - name: token_url
-            value: {{ .Values.openemr.token_url }}
-          - name: api_url
-            value: {{ .Values.openemr.api_url }}
-          - name: client_id
-            value: {{ .Values.openemr.client_id }}
-          - name: grant_type
-            value: {{ .Values.openemr.grant_type }}
-          - name: user_role
-            value: {{ .Values.openemr.user_role }}
-          - name: scope
-            value: {{ .Values.openemr.scope }}
-          - name: username
-            value: {{ .Values.openemr.username }}
-          - name: password
-            value: {{ .Values.openemr.password }}
+          - name: openemr.token_url
+            valueFrom:
+              configMapKeyRef:
+                name: openemr-config
+                key:  openemr.token_url
+          - name: openemr.api_url
+            valueFrom:
+              configMapKeyRef:
+                name: openemr-config
+                key:  openemr.api_url
+          - name: openemr.client_id
+            valueFrom:
+              configMapKeyRef:
+                name: openemr-config
+                key:  openemr.client_id
+          - name: openemr.grant_type
+            valueFrom:
+              configMapKeyRef:
+                name: openemr-config
+                key:  openemr.grant_type
+          - name: openemr.user_role
+            valueFrom:
+              configMapKeyRef:
+                name: openemr-config
+                key:  openemr.user_role
+          - name: openemr.scope
+            valueFrom:
+              configMapKeyRef:
+                name: openemr-config
+                key:  openemr.scope
+          - name: openemr.username
+            valueFrom:
+              secretKeyRef:
+                name: openemr-secret
+                key:  openemr.username
+          - name: openemr.password
+            valueFrom:
+              secretKeyRef:
+                name: openemr-secret
+                key:  openemr.password
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}"

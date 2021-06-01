@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openemr-config
+data:
+  openemr.token_url: {{ .Values.openemr.token_url }}
+  openemr.api_url: {{ .Values.openemr.api_url }}
+  openemr.client_id: {{ .Values.openemr.client_id }}
+  openemr.grant_type: {{ .Values.openemr.grant_type }}
+  openemr.user_role: {{ .Values.openemr.user_role }}
+  openemr.scope: {{ .Values.openemr.scope }}

@@ -3,9 +3,9 @@ kind: ConfigMap
 metadata:
   name: spring-config
 data:
-  dev-config.json:
+  dev-config.json: 
     '{
-      "spring.datasource.url": "jdbc:postgresql://hapi-fhir-open-emr-postgresql.default.svc.cluster.local:5432/hapi-persist-db",
-      "spring.datasource.username": "postgres",
-      "spring.datasource.password": "postgres"
-     }'
+      "spring.datasource.url": "{{ .Values.spring.datasource.url }}",
+      "spring.datasource.username": "{{ .Values.spring.datasource.username }}",
+      "spring.datasource.password": "{{ .Values.spring.datasource.password }}"
+    }'
